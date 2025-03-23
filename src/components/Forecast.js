@@ -11,7 +11,7 @@ const Forecast = ({ weatherData }) => {
       
               {new Date(weatherData.daily.time[index] * 1000).toLocaleDateString('en-GB', { 
                 weekday: 'short',
-                timeZone: 'Europe/London'
+                timeZone: 'Asia/Tokyo'
               })}
           
             {getWeatherCondition(weatherData.hourly.weathercode[index * 24])}

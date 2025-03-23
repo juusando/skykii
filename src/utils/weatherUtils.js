@@ -44,25 +44,25 @@ export const formatCurrentWeather = (weatherData) => {
       hour: '2-digit', 
       minute: '2-digit', 
       hour12: false,
-      timeZone: 'Europe/London'
+      timeZone: 'Asia/Tokyo'
     }),
     sunset: new Date(weatherData.daily.sunset[0]).toLocaleTimeString('en-GB', { 
       hour: '2-digit', 
       minute: '2-digit', 
       hour12: false,
-      timeZone: 'Europe/London'
+      timeZone: 'Asia/Tokyo'
     }),
     currentDate: new Date(currentTime).toLocaleString('en-GB', { 
       weekday: 'short',
       day: 'numeric',
       month: 'short',
-      timeZone: 'Europe/London'
+      timeZone: 'Asia/Tokyo'
     }),
     currentTime: new Date(currentTime).toLocaleTimeString('en-GB', { 
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
-      timeZone: 'Europe/London'
+      timeZone: 'Asia/Tokyo'
     })
   };
 };
