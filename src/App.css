@@ -28,6 +28,8 @@ html, body, #root {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: env(safe-area-inset-top);
+  margin-top: calc(-2 * env(safe-area-inset-top));
   font-size: 64px;
   color: #2BDDB5;
   height: 100%;
@@ -45,7 +47,7 @@ html, body, #root {
 
 .logo{
 width: clamp(160px, 10vw, 240px);
-stroke-width: 2.5px;
+stroke-width: 1.2px;
 }
 
 .icon-error {
@@ -60,4 +62,26 @@ stroke-width: 2.5px;
   line-height: 24px;
   color: #999;
   overflow: hidden;
+}
+
+.design-sys-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 54px;
+  font-family: 'cera-m';
+  line-height: 90%;
+  font-size: 18px;
+  color: #1B2130;
+  background-color: #2BDDB5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.design-sys-button:hover {
+  background-color: #22B090;
+  transform: translateY(-2px);
 }
