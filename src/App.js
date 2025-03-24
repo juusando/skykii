@@ -1,15 +1,14 @@
 import './App.css';
-import SvgIcon from './components/SvgIcon';
-import DesignSys from './components/DesignSys';
-import WeatherPage from './components/WeatherPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SvgIcon from './pages/SvgIcon';
+import LocationSearch from './components/LocationSearch';
+import WeatherPage from './pages/WeatherPage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/design-system" element={<DesignSys />} />
-        <Route path="/weather" element={<WeatherPage />} />
+        <Route path="/weather/:latitude/:longitude/:city" element={<WeatherPage />} />
         <Route path="/" element={
           <div className="App">
             <header className="App-header">
@@ -18,18 +17,7 @@ function App() {
               </div>
               SKYKI
               <div className="nav-buttons">
-                <button 
-                  onClick={() => window.location.href = '/weather'}
-                  className="design-sys-button"
-                >
-                  Weather
-                </button>
-                <button 
-                  onClick={() => window.location.href = '/design-system'}
-                  className="design-sys-button"
-                >
-                  Design System
-                </button>
+                <LocationSearch />
               </div>
             </header>
           </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './SvgIcon.css';
+import '../styles/SvgIcon.scss';
 
-const SvgIcon = ({ name, className, ...props }) => {
+// Ensure proper export
+function SvgIcon({ name, className, ...props }) {
   const [svgContent, setSvgContent] = useState('');
   const [error, setError] = useState(null);
 
@@ -46,6 +47,7 @@ const SvgIcon = ({ name, className, ...props }) => {
   const combinedClassName = `svg-icon ${className || ''}`.trim();
 
   // Render the SVG content inside a div
+  // The JSX using props will now work correctly
   return (
     <div 
       className={combinedClassName}

@@ -5,21 +5,24 @@ const Forecast = ({ weatherData }) => {
   if (!weatherData) return null;
 
   return (
-      <div >
-        {weatherData.daily.temperature_2m_max.map((maxTemp, index) => (
-          <div key={index}>
-      
-              {new Date(weatherData.daily.time[index] * 1000).toLocaleDateString('en-GB', { 
-                weekday: 'short',
-                timeZone: 'Asia/Tokyo'
-              })}
-          
-            {getWeatherCondition(weatherData.hourly.weathercode[index * 24])}
+    <div className="forecast-container">
+      {weatherData.daily.temperature_2m_max.map((maxTemp, index) => (
+        <div key={index} className="forecast-item">
+          <div className="forecast-day">
+            {new Date(weatherData.daily.time[index]).toLocaleDateString('en-GB', { 
+              weekday: 'short',
+              timeZone: 'Asia/Tokyo'
+            })}
+          </div>
+          <div className="forecast-condition">
+            {getWeatherCondition(weatherData.daily.weathercode[index])}
+          </div>
+          <div className="forecast-temp">
             {Math.round(maxTemp)}°
           </div>
-        ))}
-      </div>
-
+        </div>
+      ))}
+    </div>
   );
 };
 

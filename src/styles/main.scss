@@ -1,0 +1,34 @@
+@import '_var';
+
+// Mixins
+@mixin center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// - - - - - - - - - - - - - - - - - - - 
+.date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  font-family: 'cera-m';
+}
+// - - - - - - - - - - - - - - - - - - - 
+.App {
+  @include center-content;
+  background-color: $pri;
+
+  .App-header {
+    color: white;
+    
+    .nav-buttons {
+      button {
+        background-color: $sec;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

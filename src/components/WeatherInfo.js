@@ -1,18 +1,12 @@
 import React from 'react';
 
-const CurrentWeather = ({ weather }) => {
+const WeatherInfo = ({ weather }) => {
     if (!weather) return null;
 
     return (
         <>
 
             <div className="weather-details">
-                <div>{weather.currentDate}</div>
-                <div>{weather.currentTime}</div>
-                <div>{weather.condition}</div>
-                <div>{weather.temperature}°</div>
-                <div>H: {weather.maxTemp}°</div>
-                <div>L: {weather.minTemp}°</div>
                 <div>Humidity: {weather.humidity}%</div>
                 <div>Precipitation: {weather.precipitation}%</div>
                 <div>Wind: {weather.windspeed} km/h</div>
@@ -24,4 +18,4 @@ const CurrentWeather = ({ weather }) => {
     );
 };
 
-export default CurrentWeather;
+export default WeatherInfo;
