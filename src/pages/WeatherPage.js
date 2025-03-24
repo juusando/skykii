@@ -5,6 +5,7 @@ import Temperature from '../components/Temperature';
 import Condition from '../components/Condition';
 import WeatherInfo from '../components/WeatherInfo';
 import Forecast from '../components/Forecast';
+import DateTime from '../components/DateTime';
 import { formatCurrentWeather } from '../utils/weatherUtils';
 
 const WeatherPage = () => {
@@ -49,13 +50,16 @@ const WeatherPage = () => {
 
     return (
         <div className="weather-page">
-           <CityCountry city={cityCountry.city} country={cityCountry.country} />
-            <div className="weather-grid">
+            <div className='info-header'>
+            <CityCountry city={cityCountry.city} country={cityCountry.country} />
+            <DateTime weather={formattedWeather}/>
+            </div>
+
                 <Temperature weather={formattedWeather} />
                 <Condition weather={formattedWeather} />
                 <WeatherInfo weather={formattedWeather} />
                 <Forecast weatherData={weatherData} />
-            </div>
+         
         </div>
     );
 };

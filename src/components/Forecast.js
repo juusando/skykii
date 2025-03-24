@@ -5,19 +5,18 @@ const Forecast = ({ weatherData }) => {
   if (!weatherData) return null;
 
   return (
-    <div className="forecast-container">
+    <div className="forecast-box">
       {weatherData.daily.temperature_2m_max.map((maxTemp, index) => (
-        <div key={index} className="forecast-item">
-          <div className="forecast-day">
+        <div key={index} className="item">
+          <div className="day">
             {new Date(weatherData.daily.time[index]).toLocaleDateString('en-GB', { 
               weekday: 'short',
-              timeZone: 'Asia/Tokyo'
             })}
           </div>
-          <div className="forecast-condition">
+          <div className="condition">
             {getWeatherCondition(weatherData.daily.weathercode[index])}
           </div>
-          <div className="forecast-temp">
+          <div className="temp">
             {Math.round(maxTemp)}°
           </div>
         </div>

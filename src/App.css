@@ -37,13 +37,6 @@ html, body, #root {
   /* font-weight: 800; */
 }
 
-.svg-icon {
-  display: inline-block;
-  width: 120px;
-
-  vertical-align: middle;
-  stroke-width: 1px;
-}
 
 .logo{
 width: clamp(160px, 10vw, 240px);

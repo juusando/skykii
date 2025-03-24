@@ -6,7 +6,7 @@ const Condition = ({ weather }) => {
     return (
         <>
 
-            <div className="weather-details">
+            <div className="condition-box">
                 <div>{weather.condition}</div>
             </div>
         </>
