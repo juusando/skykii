@@ -1,27 +1,27 @@
 // Weather condition codes mapping
 export const weatherConditions = {
-  0: 'Clear sky',
-  1: 'Mainly clear',
-  2: 'Partly cloudy',
-  3: 'Overcast',
-  45: 'Foggy',
-  48: 'Depositing rime fog',
-  51: 'Light drizzle',
-  53: 'Moderate drizzle',
-  55: 'Dense drizzle',
-  61: 'Slight rain',
-  63: 'Moderate rain',
-  65: 'Heavy rain',
-  71: 'Slight snow',
-  73: 'Moderate snow',
-  75: 'Heavy snow',
-  95: 'Thunderstorm',
-  96: 'Thunderstorm with slight hail',
-  99: 'Thunderstorm with heavy hail'
+  0: { text: 'Clear sky', icon: '0' },
+  1: { text: 'Mainly clear', icon: '1' },
+  2: { text: 'Partly cloudy', icon: '2' },
+  3: { text: 'Overcast', icon: '3' },
+  45: { text: 'Foggy', icon: '45' },
+  48: { text: 'Depositing rime fog', icon: '48' },
+  51: { text: 'Light drizzle', icon: '51' },
+  53: { text: 'Moderate drizzle', icon: '53' },
+  55: { text: 'Dense drizzle', icon: '55' },
+  61: { text: 'Slight rain', icon: '61' },
+  63: { text: 'Moderate rain', icon: '63' },
+  65: { text: 'Heavy rain', icon: '65' },
+  71: { text: 'Slight snow', icon: '71' },
+  73: { text: 'Moderate snow', icon: '73' },
+  75: { text: 'Heavy snow', icon: '75' },
+  95: { text: 'Thunderstorm', icon: '95' },
+  96: { text: 'Thunderstorm with slight hail', icon: '96' },
+  99: { text: 'Thunderstorm with heavy hail', icon: '99' }
 };
 
-// Get weather condition from code
-export const getWeatherCondition = (code) => weatherConditions[code] || 'Unknown';
+export const getWeatherCondition = (code) => weatherConditions[code]?.text || 'Unknown';
+export const getWeatherIcon = (code) => weatherConditions[code]?.icon || '0';
 
 // Format current weather data
 export const formatCurrentWeather = (weatherData) => {

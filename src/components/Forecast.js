@@ -1,5 +1,6 @@
 import React from 'react';
-import { getWeatherCondition } from '../utils/weatherUtils';
+import { getWeatherCondition, getWeatherIcon } from '../utils/weatherUtils';
+import SvgIcon from '../pages/SvgIcon';
 
 const Forecast = ({ weatherData }) => {
   if (!weatherData) return null;
@@ -14,7 +15,8 @@ const Forecast = ({ weatherData }) => {
             })}
           </div>
           <div className="condition">
-            {getWeatherCondition(weatherData.daily.weathercode[index])}
+            <SvgIcon name={getWeatherIcon(weatherData.daily.weathercode[index])} className="weather-icon" />
+            {/* {getWeatherCondition(weatherData.daily.weathercode[index])} */}
           </div>
           <div className="temp">
             {Math.round(maxTemp)}°
