@@ -1,27 +1,31 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import SvgIcon from './pages/SvgIcon';
-import LocationSearch from './components/LocationSearch';
 import WeatherPage from './pages/WeatherPage';
+import SearchPage from './pages/SearchPage';
+
+const HomePage = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="App">
+      <header className="App-header">
+        <SvgIcon name="skyki" className={"logo"} />
+        SKYKI
+      </header>
+      <button className="back" onClick={() => navigate('/search')}>
+        <SvgIcon name="search" className="icon" />
+      </button>
+    </div>
+  );
+};
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/weather/:latitude/:longitude/:city" element={<WeatherPage />} />
-        <Route path="/" element={
-          <div className="App">
-            <header className="App-header">
-              <div className="icon-examples">
-                <SvgIcon name="skyki" className={"logo"} />
-              </div>
-              SKYKI
-              <div className="nav-buttons">
-                <LocationSearch />
-              </div>
-            </header>
-          </div>
-        } />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </Router>
   );

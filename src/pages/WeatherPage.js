@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import SvgIcon from './SvgIcon';
 import CityCountry from '../components/CityCountry';
 import Temperature from '../components/Temperature';
 import Condition from '../components/Condition';
@@ -10,6 +11,7 @@ import { formatCurrentWeather } from '../utils/weatherUtils';
 
 const WeatherPage = () => {
     const { latitude, longitude, city } = useParams();
+    const navigate = useNavigate();
     const [weatherData, setWeatherData] = useState(null);
     const [formattedWeather, setFormattedWeather] = useState(null);
     const [cityCountry, setCityCountry] = useState({ city: city || 'Unknown', country: 'Unknown' });
@@ -50,6 +52,7 @@ const WeatherPage = () => {
 
     return (
         <div className="weather-page">
+
             <div className='info-header'>
                 <CityCountry city={cityCountry.city} country={cityCountry.country} />
                 <DateTime weather={formattedWeather}/>
@@ -58,6 +61,10 @@ const WeatherPage = () => {
             <Temperature weather={formattedWeather} />
             <WeatherInfo weather={formattedWeather} />
             <Forecast weatherData={weatherData} />
+
+            <button  onClick={() => navigate('/')}>
+                <SvgIcon name="home" className="icon" />
+            </button>
         </div>
     );
 };

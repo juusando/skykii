@@ -49,6 +49,36 @@ $desktop: 1024px;
       padding: env(safe-area-inset-top) env(safe-area-inset-bottom);
     }
   }
+
+  .back{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 32px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    z-index: 10;
+
+    svg{
+      width: 32px;
+      // height: 24px;
+      stroke-width: 1.4px;
+      color: #333444;
+
+    }
+  
+    &:hover {
+      background-color: rgba(43, 221, 181, 0.2);
+    }
+  }
 }
 // - - - - - - - - - - - - - - - - - - - 
 .info-header{
@@ -66,13 +96,13 @@ $desktop: 1024px;
   }
 }
 // - - - - - - - - - - - - - - - - - - - 
+
 .date-box {
   display: flex;
   flex-direction: column;
   align-items: end;
   justify-content: center;
   font-family: 'cera-m';
-
 
 .time {
   font-size: clamp(24px, 4vw, 28px);
@@ -102,6 +132,7 @@ $desktop: 1024px;
  }    
 
 // - - - - - - - - - - - - - - - - - - - 
+
 .temperature-box {
   display: flex;
   flex-direction: column;
@@ -129,6 +160,7 @@ $desktop: 1024px;
   }
 }
 // - - - - - - - - - - - - - - - - - - - 
+
 .weather-info-box{
   display: flex;
   flex-direction: row;
@@ -170,6 +202,7 @@ $desktop: 1024px;
   }
 }
 // - - - - - - - - - - - - - - - - - - - 
+
 .condition-box{
   display: flex;
   flex-direction: column;
@@ -186,6 +219,7 @@ $desktop: 1024px;
   }
 }
 // - - - - - - - - - - - - - - - - - - - 
+
 .forecast-box{
   display: flex;
   flex-direction: row;
@@ -227,6 +261,9 @@ $desktop: 1024px;
    }
  }
 }
+
+//- - - - - - - - - - - - - - - - - - - - - 
+
 // - - - - - - - - - - - - - - - - - - - 
 .App {
   @include center-content;

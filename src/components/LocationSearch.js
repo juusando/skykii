@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/search.scss';
 
 const LocationSearch = () => {
     const [query, setQuery] = useState('');
@@ -56,7 +57,7 @@ const LocationSearch = () => {
                             onClick={() => handleLocationSelect(result)}
                             className="result-item"
                         >
-                            {result.name}, {result.country}
+                           <span>{result.name}</span>  <span>{result.country}</span> 
                         </li>
                     ))}
                 </ul>
