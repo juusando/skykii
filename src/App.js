@@ -1,4 +1,5 @@
 import './App.css';
+import SavedLocations from './components/SavedLocations';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import SvgIcon from './pages/SvgIcon';
 import WeatherPage from './pages/WeatherPage';
@@ -13,8 +14,9 @@ const HomePage = () => {
         SKYKI
       </header>
       <button className="back" onClick={() => navigate('/search')}>
-        <SvgIcon name="search" className="icon" />
+        <SvgIcon name="search" />
       </button>
+      <SavedLocations />
     </div>
   );
 };

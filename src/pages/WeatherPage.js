@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import SvgIcon from './SvgIcon';
 import CityCountry from '../components/CityCountry';
+import { saveLocation, removeLocation, isLocationSaved } from '../utils/locationStorage';
 import Temperature from '../components/Temperature';
 import Condition from '../components/Condition';
 import WeatherInfo from '../components/WeatherInfo';
@@ -16,7 +17,14 @@ const WeatherPage = () => {
     const [formattedWeather, setFormattedWeather] = useState(null);
     const [cityCountry, setCityCountry] = useState({ city: city || 'Unknown', country: 'Unknown' });
 
+
     useEffect(() => {
+        saveLocation({
+            name: cityCountry.city,
+            country: cityCountry.country,
+            latitude,
+            longitude
+        });
         const fetchLocationAndWeather = async () => {
             try {
                 // Use the same endpoint as search but with city name
@@ -62,9 +70,12 @@ const WeatherPage = () => {
             <WeatherInfo weather={formattedWeather} />
             <Forecast weatherData={weatherData} />
 
-            <button  onClick={() => navigate('/')}>
-                <SvgIcon name="home" className="icon" />
-            </button>
+            <div className="action-buttons">
+
+                <button onClick={() => navigate('/')} className='back'>
+                    <SvgIcon name="home" />
+                </button>
+            </div>
         </div>
     );
 };

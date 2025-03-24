@@ -10,20 +10,6 @@ impo
         align-items: center;
         margin-bottom: 20px;
 
-        .back {
-            background: none;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            margin-right: 15px;
-
-            .icon {
-                width: 24px;
-                height: 24px;
-                fill: $text-color;
-            }
-        }
-
         h1 {
             color: $text-color;
             margin: 0;
