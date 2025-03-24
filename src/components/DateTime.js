@@ -7,8 +7,8 @@ const DateTime = ({ weather }) => {
     return (
         <>
             <div className="date-box">
-                <div>{weather.currentDate}</div>
-                <div>{weather.currentTime}</div>
+                <div className='date'>{weather.currentDate}</div>
+                <div className='time'>{weather.currentTime}</div>
             </div>
         </>
     );

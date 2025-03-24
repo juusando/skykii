@@ -6,14 +6,49 @@
   justify-content: center;
   align-items: center;
 }
-// - - - - - - - - - - - - - - - - - - -
+
+// Responsive breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$mobile + 1}) and (max-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$tablet + 1}) {
+    @content;
+  }
+}
+// - - - - - - - - - - - - - - - - - - - - - - - - -
 .weather-page{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-family: 'cera-m';
-  gap: 24px;
+  gap: clamp(16px, 3vh, 24px);
+  padding: 24px;
+  min-height: 100vh;
+  // width: 100%
+  // max-width: 1200px;
+  margin: 0 auto;
+  overflow-y: hidden;
+
+  
+  @supports (padding: env(safe-area-inset-top)) {
+    @media (pointer: coarse) {
+      padding: env(safe-area-inset-top) env(safe-area-inset-bottom);
+    }
+  }
 }
 // - - - - - - - - - - - - - - - - - - - 
 .info-header{
@@ -22,9 +57,13 @@
   align-items: center;
   justify-content: space-between;
   font-family: 'cera-m';
-  gap: 16px;
-  width: 100%;
-  max-width: 640px;
+  padding-top: 16px;
+
+  @include mobile {
+    flex-direction: row;
+    width: 100%;
+    text-align: center;
+  }
 }
 // - - - - - - - - - - - - - - - - - - - 
 .date-box {
@@ -33,14 +72,35 @@
   align-items: end;
   justify-content: center;
   font-family: 'cera-m';
+
+
+.time {
+  font-size: clamp(24px, 4vw, 28px);
+  font-family: 'cera-m';
 }
+.date {
+  font-size: clamp(18px, 3vw, 22px);
+  font-family: 'cera-m';
+}
+} 
+
 .location-box {
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
   font-family: 'cera-m';
-}
+
+.city {
+    font-size: clamp(24px, 4vw, 28px);
+    font-family: 'cera-m';
+  }
+ .country {
+    font-size: clamp(18px, 3vw, 22px);
+    font-family: 'cera-m';
+  }
+ }    
+
 // - - - - - - - - - - - - - - - - - - - 
 .temperature-box {
   display: flex;
@@ -48,19 +108,20 @@
   align-items: center;
   justify-content: center;
   font-family: 'outfit-r';
-  gap: 8px;
+  gap: clamp(4px, 1vh, 8px);
   
   .temp {
-    font-size: 120px;
+    font-size: clamp(120px, 13vw, 160px);
+    font-family: 'outfit-r';
     line-height: 90%;
   }
   .max-min {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
-    font-size: 32px;
-    font-family: 'outfit-m';
+    gap: clamp(12px, 3vw, 20px);
+    font-size: clamp(22px, 4vw, 28px);
+    font-family: 'outfit-r';
   }
 
   span{
@@ -74,14 +135,15 @@
   align-items: center;
   justify-content: center;
   font-family: 'cera-m';
-  gap: 16px;
+  gap: clamp(8px, 3vw, 16px);
+  flex-wrap: wrap;
 
   .info-box{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'outfit-m';
+    font-family: 'outfit-r';
 
     .icon {
       display: flex;
@@ -89,8 +151,8 @@
       align-items: center;
       justify-content: center;
       svg{
-        width: 40px;
-        height: 40px;
+        width: 26px;
+        height: 26px;
         stroke-width: 1.5px;
       }
     }
@@ -100,10 +162,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: end;
-    gap: 4px;
-    font-size: 20px;
+    gap: clamp(2px, 1vw, 4px);
+    font-size: clamp(15px, 3vw, 18px);
     span{
-      font-size: 16px
+      font-size: clamp(16px, 3.5vw, 18px);
     }
   }
 }
@@ -113,14 +175,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: clamp(18px, 4vw, 24px);
   font-family: 'cera-m';
-  gap: 16px;
+  // gap: clamp(4px, 2vh, 8px);
 
   .weather-icon{
-    width: 120px;
-    height: 120px;
-    stroke-width: 1px;
+    width: clamp(88px, 15vw, 120px);
+    // height: clamp(88px, 15vw, 120px);
+    stroke-width: .8px;
   }
 }
 // - - - - - - - - - - - - - - - - - - - 
@@ -130,52 +192,41 @@
   align-items: center;
   justify-content: center;
   font-family: 'cera-m';
-  gap: 16px;
+  gap: clamp(8px, 3vw, 16px);
+  flex-wrap: wrap;
 
  .item{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
     font-family: 'outfit-m';
-    
-   .icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    gap: clamp(4px, 1vw, 8px);
 
-      svg{
-        width: 40px;
-        height: 40px;
-        stroke-width: 1.5px;
-      }
+    .day{
+      font-size: clamp(14px, 4vw, 18px);
+      font-family: 'cera-r';
     }
    .condition{
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: end;
-      font-size: 16px;
-
-      span{
-        font-size: 16px
-      } 
+  
       .weather-icon{
-        width: 44px;
-        height: 44px;
+        width: 28px;
+        height: 28px;
         svg{
           stroke-width: 1.4px;
         }
       }
    }
    .temp{
-      font-size: 20px;
+    font-family: 'cera-r';
+      font-size: 18px;
    }
  }
 }
-// - - - - - - - - - - - - - - - - - - - 
 // - - - - - - - - - - - - - - - - - - - 
 .App {
   @include center-content;

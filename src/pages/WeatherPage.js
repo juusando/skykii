@@ -51,15 +51,13 @@ const WeatherPage = () => {
     return (
         <div className="weather-page">
             <div className='info-header'>
-            <CityCountry city={cityCountry.city} country={cityCountry.country} />
-            <DateTime weather={formattedWeather}/>
+                <CityCountry city={cityCountry.city} country={cityCountry.country} />
+                <DateTime weather={formattedWeather}/>
             </div>
-
-                <Temperature weather={formattedWeather} />
-                <Condition weather={formattedWeather} />
-                <WeatherInfo weather={formattedWeather} />
-                <Forecast weatherData={weatherData} />
-         
+            <Condition weather={formattedWeather} />
+            <Temperature weather={formattedWeather} />
+            <WeatherInfo weather={formattedWeather} />
+            <Forecast weatherData={weatherData} />
         </div>
     );
 };

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const CityCountry = ({ city, country }) => {
   return (
     <div className="location-box">
-        <div>{city}</div>
-        <div>{country}</div>
+        <div className='city'>{city}</div>
+        <div className='country'>{country}</div>
     </div>
   );
 };

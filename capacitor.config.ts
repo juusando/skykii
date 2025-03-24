@@ -8,6 +8,11 @@ const config: CapacitorConfig = {
   //   url: 'http://192.168.0.114:3000',
   //   cleartext: true
   // }
+
+  server: {
+    url: 'http://localhost:3000',
+    cleartext: true
+  }
 };
 
 export default config;
