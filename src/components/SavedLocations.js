@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSavedLocations } from '../utils/locationStorage';
 import SvgIcon from '../pages/SvgIcon';
+import '../styles/SavedLocations.scss';
 
 const SavedLocations = () => {
     const navigate = useNavigate();
@@ -12,23 +13,23 @@ const SavedLocations = () => {
     }
 
     return (
-        <div className="saved-locations">
-            <h2>Saved Locations</h2>
-            <div className="location-grid">
-                {savedLocations.map((location) => (
-                    <div 
-                        key={location.id} 
-                        className="location-card"
-                        onClick={() => navigate(`/weather/${location.latitude}/${location.longitude}/${encodeURIComponent(location.name)}`)}
-                    >
-                        <div className="location-info">
-                            <h3>{location.name}</h3>
-                            <p>{location.country}</p>
-                        </div>
+
+        <div className="location-grid">
+            {savedLocations.map((location) => (
+                <div
+                    key={location.id}
+                    className="location-card"
+                    onClick={() => navigate(`/weather/${location.latitude}/${location.longitude}/${encodeURIComponent(location.name)}`)}
+                >
+                    <div className="location-info">
+                    <div className='city'>{location.name}</div>
+                    <div className='country'>{location.country}</div>
                     </div>
-                ))}
-            </div>
+                   <SvgIcon name="add" className={"icon"}/>
+                </div>
+            ))}
         </div>
+
     );
 };
 
