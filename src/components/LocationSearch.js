@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { saveLocation } from '../utils/locationStorage';
 import '../styles/search.scss';
 
 const LocationSearch = () => {
@@ -8,16 +9,14 @@ const LocationSearch = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const searchLocations = async (searchQuery) => {
-        if (!searchQuery.trim()) {
-            setResults([]);
-            return;
-        }
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        if (!query.trim()) return;
 
         setLoading(true);
         try {
             const response = await fetch(
-                `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(searchQuery)}&count=5&language=en&format=json`
+                `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5`
             );
             const data = await response.json();
             setResults(data.results || []);
@@ -29,38 +28,47 @@ const LocationSearch = () => {
         }
     };
 
-    const handleSearch = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        searchLocations(value);
-    };
-
-    const handleLocationSelect = (location) => {
+    const handleSelectLocation = (location) => {
+        // Save the location to localStorage
+        saveLocation({
+            name: location.name,
+            country: location.country,
+            latitude: location.latitude,
+            longitude: location.longitude
+        });
+        
+        // Navigate to the swipeable weather view
         navigate(`/weather/${location.latitude}/${location.longitude}/${encodeURIComponent(location.name)}`);
     };
 
     return (
         <div className="location-search">
-            <input
-                type="text"
-                value={query}
-                onChange={handleSearch}
-                placeholder="Search for a location..."
-                className="search-input"
-            />
+            <form onSubmit={handleSearch}>
+                <input
+                    type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search for a city..."
+                    className="search-input"
+                />
+                <button type="submit" className="search-button">Search</button>
+            </form>
+            
             {loading && <div className="loading">Searching...</div>}
+            
             {results.length > 0 && (
-                <ul className="search-results">
+                <div className="search-results">
                     {results.map((result) => (
-                        <li
+                        <div
                             key={`${result.latitude}-${result.longitude}`}
-                            onClick={() => handleLocationSelect(result)}
                             className="result-item"
+                            onClick={() => handleSelectLocation(result)}
                         >
-                           <span>{result.name}</span>  <span>{result.country}</span> 
-                        </li>
+                            <div className="result-name">{result.name}</div>
+                            <div className="result-country">{result.country}</div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

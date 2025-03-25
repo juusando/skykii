@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import LocationSearch from '../components/LocationSearch';
+import LocationList from './LocationList';
 import SvgIcon from './SvgIcon';
 import '../styles/search.scss';
 import '../styles/main.scss';

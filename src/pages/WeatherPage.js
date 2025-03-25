@@ -10,9 +10,15 @@ import Forecast from '../components/Forecast';
 import DateTime from '../components/DateTime';
 import { formatCurrentWeather } from '../utils/weatherUtils';
 
-const WeatherPage = () => {
-    const { latitude, longitude, city } = useParams();
+const WeatherPage = ({ isSwipeable = false, swipeableProps = null }) => {
+    const params = useParams();
     const navigate = useNavigate();
+    
+    // Use either swipeable props or URL params
+    const latitude = swipeableProps?.latitude || params.latitude;
+    const longitude = swipeableProps?.longitude || params.longitude;
+    const city = swipeableProps?.name || params.city;
+    
     const [weatherData, setWeatherData] = useState(null);
     const [formattedWeather, setFormattedWeather] = useState(null);
     const [cityCountry, setCityCountry] = useState({ city: city || 'Unknown', country: 'Unknown' });
@@ -72,9 +78,11 @@ const WeatherPage = () => {
 
             <div className="action-buttons">
 
-                <button onClick={() => navigate('/')} className='back'>
-                    <SvgIcon name="home" />
-                </button>
+                {!isSwipeable && (
+                    <button onClick={() => navigate('/')} className='back'>
+                        <SvgIcon name="home" />
+                    </button>
+                )}
             </div>
         </div>
     );

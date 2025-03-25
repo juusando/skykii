@@ -1,10 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSavedLocations } from '../utils/locationStorage';
-import SvgIcon from '../pages/SvgIcon';
-import '../styles/SavedLocations.scss';
+import SvgIcon from './SvgIcon';
 
-const SavedLocations = () => {
+const LocationList = () => {
     const navigate = useNavigate();
     const savedLocations = getSavedLocations();
 
@@ -13,24 +12,22 @@ const SavedLocations = () => {
     }
 
     return (
-
         <div className="location-grid">
             {savedLocations.map((location) => (
                 <div
-                    key={location.id}
+                    key={`${location.latitude}-${location.longitude}`}
                     className="location-card"
                     onClick={() => navigate(`/weather/${location.latitude}/${location.longitude}/${encodeURIComponent(location.name)}`)}
                 >
                     <div className="location-info">
-                    <div className='city'>{location.name}</div>
-                    <div className='country'>{location.country}</div>
+                        <div className='city'>{location.name}</div>
+                        <div className='country'>{location.country}</div>
                     </div>
-                   <SvgIcon name="add" className={"icon"}/>
+                    <SvgIcon name="add" className={"icon"}/>
                 </div>
             ))}
         </div>
-
     );
 };
 
-export default SavedLocations;
+export default LocationList;
