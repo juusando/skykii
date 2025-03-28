@@ -81,25 +81,23 @@ const LocationList = () => {
                         }}
                     >
                         <div 
+                            className="delete-action"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleDelete(locationKey);
+                            }}
+                        >
+                            <SvgIcon name="trash" />
+                        </div>
+                        <div 
                             className="location-info"
                             style={{
-                                transform: `translateX(${swipedId === locationKey ? '-72px' : '0px'})`,
+                                transform: `translateX(${swipedId === locationKey ? '-80px' : '0px'})`,
                             }}
                         >
                             <div className="city">{location.name}</div>
                             <div className="country">{location.country}</div>
                         </div>
-                        {swipedId === locationKey && (
-                            <div 
-                                className="delete-action"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleDelete(locationKey);
-                                }}
-                            >
-                                {/* <SvgIcon name="trash" /> */}
-                            </div>
-                        )}
                     </div>
                 );
             })}

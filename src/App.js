@@ -6,6 +6,7 @@ import WeatherPage from './pages/WeatherPage';
 import SearchPage from './pages/SearchPage';
 import SwipeableWeather from './pages/SwipeableWeather';
 import HomePage from './pages/HomePage';
+import SettingsPage from './pages/SettingsPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/weather/:latitude/:longitude/:city" element={<SwipeableWeather />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/" element={<HomePage />} />
       </Routes>
     </Router>

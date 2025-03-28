@@ -1,4 +1,6 @@
 @import '_var';
+@import './SettingsPage.scss';
+
 
 // Mixins
 @mixin center-content {
@@ -354,4 +356,5 @@ $desktop: 1024px;
         }
     }
 }
+
 

@@ -13,8 +13,11 @@ const HomePage = () => {
                 <SvgIcon name="skyki" className="logo" />
                 Skyki
             </header>
-            <button className="back" onClick={() => navigate('/search')}>
+            <button className="back right" onClick={() => navigate('/search')}>
                 <SvgIcon name="add" />
+            </button>
+            <button className="back left" onClick={() => navigate('/settings')}>
+                <SvgIcon name="setting" />
             </button>
             <LocationList />
         </div>

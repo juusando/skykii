@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import debounce from 'lodash/debounce';
 import { useNavigate } from 'react-router-dom';
 import { saveLocation } from '../utils/locationStorage';
 import '../styles/search.scss';
@@ -10,14 +11,16 @@ const LocationSearch = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
-        if (!query.trim()) return;
+    const handleSearch = async (searchQuery) => {
+        if (!searchQuery.trim() || searchQuery.trim().length < 2) {
+            setResults([]);
+            return;
+        }
 
         setLoading(true);
         try {
             const response = await fetch(
-                `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5`
+                `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(searchQuery)}&count=10`
             );
             const data = await response.json();
             setResults(data.results || []);
@@ -27,6 +30,19 @@ const LocationSearch = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Debounce the search to avoid too many API calls
+    const debouncedSearch = React.useCallback(
+        debounce((searchQuery) => handleSearch(searchQuery), 150),
+        []
+    );
+
+    // Update query and trigger search on input change
+    const handleInputChange = (e) => {
+        const newQuery = e.target.value;
+        setQuery(newQuery);
+        debouncedSearch(newQuery);
     };
 
     const handleSelectLocation = (location) => {
@@ -43,11 +59,11 @@ const LocationSearch = () => {
 
     return (
         <div className="location-search">
-            <form onSubmit={handleSearch} className='form-box'>
+            <form className='form-box' onSubmit={(e) => e.preventDefault()}>
                 <input
                     type="text"
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={handleInputChange}
                     placeholder="Search for a city..."
                     className="search-input"
                 />

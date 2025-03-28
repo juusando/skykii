@@ -67,14 +67,12 @@ const SwipeableWeather = () => {
                 ))}
 
             </div>
-            <button className="back left" onClick={() => navigate(-1)}>
+            <button className="back left" onClick={() => navigate('/')}>
                     <SvgIcon name="hum" />
             </button>
-
-            <button onClick={() => navigate('/')} className='back right'>
-                        <SvgIcon name="add" />
-                    </button>
-
+            <button className='back right' onClick={() => navigate('/search')}>
+                <SvgIcon name="add" />
+            </button>
         </div>
     );
 };
