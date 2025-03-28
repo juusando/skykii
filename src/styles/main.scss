@@ -30,17 +30,50 @@ $desktop: 1024px;
   }
 }
 // - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 24px;
+  text-align: center;
+  background-color: #fff;
+  height: 100%;
+  padding-top: calc(env(safe-area-inset-top) + 20px);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.App-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-family: 'cera-m';
+    font-size: clamp(32px, 5vw, 40px);
+    line-height: 100%;
+    
+    .logo{
+      width: clamp(100px, 10vw, 200px);
+      stroke-width: 1px;
+      }
+      
+}
+
+// - - - - - - - - - - - - - - - - - - - - - -
 .weather-page{
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'cera-m';
-  gap: clamp(16px, 3vh, 24px);
+  gap: clamp(16px, 3vh, 16px);
   padding: 24px;
   min-height: 100vh;
   margin: 0 auto;
   overflow-y: hidden;
-
   
   @supports (padding: env(safe-area-inset-top)) {
     @media (pointer: coarse) {
@@ -55,7 +88,7 @@ $desktop: 1024px;
   justify-content: center;
   position: fixed;
   bottom: 32px;
-  left: 20px;
+  // left: 20px;
   background: none;
   border: none;
   cursor: pointer;
@@ -67,8 +100,8 @@ $desktop: 1024px;
   transition: all 0.2s ease;
 
   svg{
-    width: 36px;
-    stroke-width: 1.4px;
+    width: 40px;
+    stroke-width: 1.2px;
     color: #333444;
   }
 
@@ -79,6 +112,22 @@ $desktop: 1024px;
     }
   }
 }
+
+.top{
+  position: static;
+  svg{
+    width: 36px;
+    stroke-width: 1.4px;
+  }
+}
+
+.left{
+  left: 20px;
+}
+.right{
+  right: 20px;
+}
+
 // - - - - - - - - - - - - - - - - - - - 
 .info-header{
   display: flex;
@@ -86,7 +135,7 @@ $desktop: 1024px;
   align-items: center;
   justify-content: space-between;
   font-family: 'cera-m';
-  padding-top: 16px;
+  padding-top: 12px;
 
   @include mobile {
     flex-direction: row;
@@ -139,18 +188,19 @@ $desktop: 1024px;
   justify-content: center;
   font-family: 'outfit-r';
   gap: clamp(4px, 1vh, 8px);
+  padding-block: 8px 24px;
   
   .temp {
-    font-size: clamp(120px, 13vw, 160px);
+    font-size: clamp(140px, 15vw, 200px);
     font-family: 'outfit-r';
-    line-height: 90%;
+    line-height: 80%;
   }
   .max-min {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: clamp(12px, 3vw, 20px);
-    font-size: clamp(22px, 4vw, 28px);
+    font-size: clamp(30px, 5vw, 34px);
     font-family: 'outfit-r';
   }
 
@@ -168,6 +218,7 @@ $desktop: 1024px;
   font-family: 'cera-m';
   gap: clamp(8px, 3vw, 16px);
   flex-wrap: wrap;
+  padding-bottom: 24px;
 
   .info-box{
     display: flex;
@@ -181,6 +232,7 @@ $desktop: 1024px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       svg{
         width: 26px;
         height: 26px;
@@ -194,7 +246,7 @@ $desktop: 1024px;
     align-items: center;
     justify-content: end;
     gap: clamp(2px, 1vw, 4px);
-    font-size: clamp(15px, 3vw, 18px);
+    font-size: clamp(18px, 3vw, 20px);
     span{
       font-size: clamp(16px, 3.5vw, 18px);
     }
@@ -207,13 +259,14 @@ $desktop: 1024px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: clamp(18px, 4vw, 24px);
   font-family: 'cera-m';
-  // gap: clamp(4px, 2vh, 8px);
+  gap: clamp(4px, 1vw, 8px);
+  font-size: clamp(22px, 4vw, 24px);
+  font-family: 'cera-m';
 
   .weather-icon{
     width: clamp(88px, 15vw, 120px);
-    // height: clamp(88px, 15vw, 120px);
+    height: clamp(88px, 15vw, 120px);
     stroke-width: .8px;
   }
 }
@@ -225,7 +278,7 @@ $desktop: 1024px;
   align-items: center;
   justify-content: center;
   font-family: 'cera-m';
-  gap: clamp(8px, 3vw, 16px);
+  gap: clamp(12px, 4vw, 16px);
   flex-wrap: wrap;
 
  .item{
@@ -234,11 +287,11 @@ $desktop: 1024px;
     align-items: center;
     justify-content: center;
     font-family: 'outfit-m';
-    gap: clamp(4px, 1vw, 8px);
+    gap: clamp(3px, 1vw, 8px);
 
     .day{
       font-size: clamp(14px, 4vw, 18px);
-      font-family: 'cera-r';
+      font-family: 'cera-m';
     }
    .condition{
       display: flex;
@@ -256,31 +309,12 @@ $desktop: 1024px;
    }
    .temp{
     font-family: 'cera-r';
-      font-size: 18px;
+      font-size: 20px;
    }
  }
 }
 
 //- - - - - - - - - - - - - - - - - - - - - 
-
-// - - - - - - - - - - - - - - - - - - - 
-.App {
-  @include center-content;
-  background-color: $pri;
-
-  .App-header {
-    color: white;
-    
-    .nav-buttons {
-      button {
-        background-color: $sec;
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    }
-  }
-}
 
 .swipeable-container {
     width: 100%;
@@ -296,7 +330,7 @@ $desktop: 1024px;
 
 .pagination-dots {
     position: fixed;
-    bottom: 32px;
+    bottom: 54px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -304,35 +338,20 @@ $desktop: 1024px;
     z-index: 1000;
     padding: 8px;
     border-radius: 16px;
-    background: rgba(0, 0, 0, 0.2);
+    // background: rgba(0, 0, 0, 0.2);
 
     .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.5);
+        width: 9px;
+        height: 4px;
+        border-radius: 5px;
+        background-color: #33344420;
         cursor: pointer;
         transition: all 0.3s ease;
 
         &.active {
-            background-color: white;
+            background-color: #333444;
             transform: scale(1.2);
         }
     }
 }
 
-.App-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 24px;
-    font-family: 'cera-m';
-    font-size: clamp(24px, 4vw, 32px);
-    
-    .logo {
-        width: clamp(64px, 8vw, 88px);
-        height: auto;
-    }
-}

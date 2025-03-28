@@ -8,37 +8,7 @@ html, body, #root {
   font-family: 'outfit-r';
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #1B2130;
-  height: 100%;
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-}
 
-.App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: calc(-2 * env(safe-area-inset-top));
-  font-size: 64px;
-  color: #2BDDB5;
-  font-family: 'bebas-bd';
-  width: 100%;
-}
-
-
-.logo{
-width: clamp(160px, 10vw, 240px);
-stroke-width: 1.2px;
-}
 
 .icon-error {
   display: inline-block;

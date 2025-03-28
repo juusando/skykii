@@ -11,10 +11,10 @@ const HomePage = () => {
         <div className="App">
             <header className="App-header">
                 <SvgIcon name="skyki" className="logo" />
-                SKYKI
+                Skyki
             </header>
             <button className="back" onClick={() => navigate('/search')}>
-                <SvgIcon name="search" />
+                <SvgIcon name="add" />
             </button>
             <LocationList />
         </div>

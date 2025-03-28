@@ -65,10 +65,16 @@ const SwipeableWeather = () => {
                         onClick={() => handleChangeIndex(index)}
                     />
                 ))}
-                <button className="back" onClick={() => navigate(-1)}>
-                    <SvgIcon name="back" />
-                </button>
+
             </div>
+            <button className="back left" onClick={() => navigate(-1)}>
+                    <SvgIcon name="hum" />
+            </button>
+
+            <button onClick={() => navigate('/')} className='back right'>
+                        <SvgIcon name="add" />
+                    </button>
+
         </div>
     );
 };

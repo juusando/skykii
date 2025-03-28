@@ -77,13 +77,13 @@ const WeatherPage = ({ isSwipeable = false, swipeableProps = null }) => {
             <Forecast weatherData={weatherData} />
 
             <div className="action-buttons">
-
                 {!isSwipeable && (
-                    <button onClick={() => navigate('/')} className='back'>
+                    <button onClick={() => navigate('/')} className='back left'>
                         <SvgIcon name="home" />
                     </button>
                 )}
             </div>
+            
         </div>
     );
 };

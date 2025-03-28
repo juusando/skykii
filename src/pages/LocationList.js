@@ -100,8 +100,7 @@ const LocationList = () => {
                                                         handleDelete(locationKey);
                                                     }}
                                                 >
-                                                    <SvgIcon name="delete" />
-                                                    Delete
+                                                    <SvgIcon name="trash" />
                                                 </div>
                                             )}
                                         </div>
