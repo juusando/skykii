@@ -75,8 +75,7 @@ const LocationList = () => {
                                             {...dragProvided.dragHandleProps}
                                             style={{
                                                 ...dragProvided.draggableProps.style,
-                                                transform: `translateX(${swipedId === locationKey ? '-100px' : '0px'})`,
-                                                transition: 'transform 0.3s ease'
+                                                position: 'relative',
                                             }}
                                             onTouchStart={handleTouchStart}
                                             onTouchMove={(e) => handleTouchMove(e, locationKey)}
@@ -87,11 +86,18 @@ const LocationList = () => {
                                                 }
                                             }}
                                         >
-                                            <div className="location-info">
+                                            <div 
+                                                className="location-info"
+                                                style={{
+                                                    transform: `translateX(${swipedId === locationKey ? '-80px' : '0px'})`,
+                                                    transition: 'transform 0.3s ease',
+                                                    width: '100%',
+                                                }}
+                                            >
                                                 <div className="city">{location.name}</div>
                                                 <div className="country">{location.country}</div>
+                                               
                                             </div>
-                                            <SvgIcon name="add" className="icon"/>
                                             {swipedId === locationKey && (
                                                 <div 
                                                     className="delete-action"
@@ -99,6 +105,7 @@ const LocationList = () => {
                                                         e.stopPropagation();
                                                         handleDelete(locationKey);
                                                     }}
+                                        
                                                 >
                                                     <SvgIcon name="trash" />
                                                 </div>
