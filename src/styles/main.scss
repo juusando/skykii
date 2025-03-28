@@ -73,9 +73,9 @@ $desktop: 1024px;
   font-family: 'cera-m';
   gap: clamp(16px, 3vh, 16px);
   padding: 24px;
-  min-height: 100vh;
+  // min-height: 100vh;
   margin: 0 auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   
   @supports (padding: env(safe-area-inset-top)) {
     @media (pointer: coarse) {
@@ -102,17 +102,11 @@ $desktop: 1024px;
   transition: all 0.2s ease;
 
   svg{
-    width: 40px;
-    stroke-width: 1.2px;
+    width: 36px;
+    stroke-width: 1.4px;
     color: #333444;
   }
 
-  &:hover {
-    svg{
-      scale : 1.2;
-      transition: all 0.2s ease;
-    }
-  }
 }
 
 .top{
@@ -193,20 +187,29 @@ $desktop: 1024px;
   padding-block: 8px 24px;
   
   .temp {
-    font-size: clamp(140px, 15vw, 200px);
-    font-family: 'outfit-r';
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    // gap: 2px;
+    font-size: clamp(150px, 17vw, 240px);
+    font-family: 'bebas-r';
     line-height: 80%;
+    .small{
+      // font-size: clamp(100px, 6vw, 120px);
+      // line-height: 100%;
+    }
   }
   .max-min {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: clamp(12px, 3vw, 20px);
-    font-size: clamp(30px, 5vw, 34px);
-    font-family: 'outfit-r';
+    font-size: clamp(36px, 6vw, 44px);
+    font-family: 'bebas-r';
   }
 
-  span{
+  .hide{
     color: transparent;
   }
 }
@@ -218,7 +221,7 @@ $desktop: 1024px;
   align-items: center;
   justify-content: center;
   font-family: 'cera-m';
-  gap: clamp(8px, 3vw, 16px);
+  gap: 16px;
   flex-wrap: wrap;
   padding-bottom: 24px;
 
@@ -227,7 +230,8 @@ $desktop: 1024px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'outfit-r';
+    font-family: 'bebas-r';
+    gap: 4px;
 
     .icon {
       display: flex;
@@ -236,9 +240,9 @@ $desktop: 1024px;
       justify-content: center;
 
       svg{
-        width: 26px;
-        height: 26px;
-        stroke-width: 1.5px;
+        width: 30px;
+        // height: 26px;
+        stroke-width: 1.3px;
       }
     }
   }
@@ -247,8 +251,8 @@ $desktop: 1024px;
     flex-direction: row;
     align-items: center;
     justify-content: end;
-    gap: clamp(2px, 1vw, 4px);
-    font-size: clamp(18px, 3vw, 20px);
+    gap: 2px;
+    font-size: clamp(22px, 3vw, 24px);
     span{
       font-size: clamp(16px, 3.5vw, 18px);
     }
@@ -262,7 +266,7 @@ $desktop: 1024px;
   align-items: center;
   justify-content: center;
   font-family: 'cera-m';
-  gap: clamp(4px, 1vw, 8px);
+  gap: 6px;
   font-size: clamp(22px, 4vw, 24px);
   font-family: 'cera-m';
 
@@ -279,8 +283,7 @@ $desktop: 1024px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-family: 'cera-m';
-  gap: clamp(12px, 4vw, 16px);
+  gap: 16px;
   flex-wrap: wrap;
 
  .item{
@@ -288,12 +291,11 @@ $desktop: 1024px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'outfit-m';
-    gap: clamp(3px, 1vw, 8px);
+    gap: 4px;
 
     .day{
-      font-size: clamp(14px, 4vw, 18px);
-      font-family: 'cera-m';
+      font-size: 20px;
+      font-family: 'bebas-r';
     }
    .condition{
       display: flex;
@@ -310,8 +312,8 @@ $desktop: 1024px;
       }
    }
    .temp{
-    font-family: 'cera-r';
-      font-size: 20px;
+    font-family: 'bebas-r';
+      font-size: 26px;
    }
  }
 }
@@ -356,5 +358,7 @@ $desktop: 1024px;
         }
     }
 }
+
+
 
 

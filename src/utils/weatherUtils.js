@@ -21,7 +21,10 @@ export const weatherConditions = {
 };
 
 export const getWeatherCondition = (code) => weatherConditions[code]?.text || 'Unknown';
-export const getWeatherIcon = (code) => weatherConditions[code]?.icon || '0';
+export const getWeatherIcon = (code) => {
+  const condition = weatherConditions[code];
+  return condition ? condition.icon : '0';
+};
 
 // Format current weather data
 export const formatCurrentWeather = (weatherData) => {
@@ -37,6 +40,7 @@ export const formatCurrentWeather = (weatherData) => {
     precipitation: weatherData.hourly.precipitation_probability[currentHourIndex],
     windspeed: weatherData.hourly.windspeed_10m[currentHourIndex],
     windDirection: weatherData.hourly.winddirection_10m[currentHourIndex],
+    weathercode: weatherData.hourly.weathercode[currentHourIndex],
     condition: getWeatherCondition(weatherData.hourly.weathercode[currentHourIndex]),
     maxTemp: Math.round(weatherData.daily.temperature_2m_max[0]),
     minTemp: Math.round(weatherData.daily.temperature_2m_min[0]),
