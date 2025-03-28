@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { getSavedLocations, removeLocation } from '../utils/locationStorage';
 import SvgIcon from './SvgIcon';
 
@@ -9,7 +8,33 @@ const LocationList = () => {
     const [locations, setLocations] = useState(getSavedLocations());
     const [swipedId, setSwipedId] = useState(null);
     const [touchStart, setTouchStart] = useState(null);
+    const [isDragging, setIsDragging] = useState(false);
 
+    // Mouse event handlers for browser support
+    const handleMouseDown = (e) => {
+        setTouchStart(e.clientX);
+        setIsDragging(true);
+    };
+
+    const handleMouseMove = (e, locationKey) => {
+        if (!touchStart || !isDragging) return;
+        
+        const currentX = e.clientX;
+        const diff = touchStart - currentX;
+
+        if (diff > 50) {
+            setSwipedId(locationKey);
+        } else if (diff < -50) {
+            setSwipedId(null);
+        }
+    };
+
+    const handleMouseUp = () => {
+        setTouchStart(null);
+        setIsDragging(false);
+    };
+
+    // Touch handlers remain the same
     const handleTouchStart = (e) => {
         setTouchStart(e.touches[0].clientX);
     };
@@ -27,99 +52,58 @@ const LocationList = () => {
         }
     };
 
-    const handleTouchEnd = () => {
-        setTouchStart(null);
-    };
-
     const handleDelete = (locationKey) => {
         removeLocation(locationKey);
         setLocations(getSavedLocations());
         setSwipedId(null);
+        setIsDragging(false);
     };
-
-    const onDragEnd = (result) => {
-        if (!result.destination) return;
-        const items = Array.from(locations);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
-        setLocations(items);
-        localStorage.setItem('savedLocations', JSON.stringify(items));
-    };
-
-    if (locations.length === 0) {
-        return null;
-    }
 
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="locations">
-                {(provided) => (
-                    <div 
-                        className="location-grid"
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
+        <div className="location-grid">
+            {locations.map((location) => {
+                const locationKey = `${location.latitude}-${location.longitude}`;
+                return (
+                    <div
+                        key={locationKey}
+                        className="location-card"
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={(e) => handleMouseMove(e, locationKey)}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseUp}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={(e) => handleTouchMove(e, locationKey)}
+                        onTouchEnd={handleMouseUp}
+                        onClick={() => {
+                            if (!isDragging && swipedId !== locationKey) {
+                                navigate(`/weather/${location.latitude}/${location.longitude}/${encodeURIComponent(location.name)}`);
+                            }
+                        }}
                     >
-                        {locations.map((location, index) => {
-                            const locationKey = `${location.latitude}-${location.longitude}`;
-                            return (
-                                <Draggable 
-                                    key={locationKey}
-                                    draggableId={locationKey}
-                                    index={index}
-                                >
-                                    {(dragProvided) => (
-                                        <div
-                                            className="location-card"
-                                            ref={dragProvided.innerRef}
-                                            {...dragProvided.draggableProps}
-                                            {...dragProvided.dragHandleProps}
-                                            style={{
-                                                ...dragProvided.draggableProps.style,
-                                                position: 'relative',
-                                            }}
-                                            onTouchStart={handleTouchStart}
-                                            onTouchMove={(e) => handleTouchMove(e, locationKey)}
-                                            onTouchEnd={handleTouchEnd}
-                                            onClick={() => {
-                                                if (swipedId !== locationKey) {
-                                                    navigate(`/weather/${location.latitude}/${location.longitude}/${encodeURIComponent(location.name)}`);
-                                                }
-                                            }}
-                                        >
-                                            <div 
-                                                className="location-info"
-                                                style={{
-                                                    transform: `translateX(${swipedId === locationKey ? '-80px' : '0px'})`,
-                                                    transition: 'transform 0.3s ease',
-                                                    width: '100%',
-                                                }}
-                                            >
-                                                <div className="city">{location.name}</div>
-                                                <div className="country">{location.country}</div>
-                                               
-                                            </div>
-                                            {swipedId === locationKey && (
-                                                <div 
-                                                    className="delete-action"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handleDelete(locationKey);
-                                                    }}
-                                        
-                                                >
-                                                    <SvgIcon name="trash" />
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
-                                </Draggable>
-                            );
-                        })}
-                        {provided.placeholder}
+                        <div 
+                            className="location-info"
+                            style={{
+                                transform: `translateX(${swipedId === locationKey ? '-72px' : '0px'})`,
+                            }}
+                        >
+                            <div className="city">{location.name}</div>
+                            <div className="country">{location.country}</div>
+                        </div>
+                        {swipedId === locationKey && (
+                            <div 
+                                className="delete-action"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleDelete(locationKey);
+                                }}
+                            >
+                                {/* <SvgIcon name="trash" /> */}
+                            </div>
+                        )}
                     </div>
-                )}
-            </Droppable>
-        </DragDropContext>
+                );
+            })}
+        </div>
     );
 };
 

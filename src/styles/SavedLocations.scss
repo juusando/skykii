@@ -11,26 +11,23 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // padding: 16px;
+        position: relative;
         border-radius: 10px;
         cursor: pointer;
-        position: relative;
+        background-color: #F8F8FC;
+        overflow: hidden;
+        user-select: none;
+        width: 100%;
         
-        &:active {
-            cursor: grabbing;
-        }
-
         .location-info {
             display: flex;
             flex-direction: column;
             align-items: start;
-            width: 100%;
-            background-color: #F8F8FC;
-            transition: transform 0.3s ease;
-            border-radius: 10px;
+            justify-content: start;
             padding: 16px;
-            position: relative;
-            z-index: 1;
+            background-color: inherit;
+            transition: transform 0.3s ease;
+            width: 100%;
 
             .city {
                 font-size: 20px;
@@ -40,27 +37,26 @@
                 font-size: 16px;
             }
         }
-    }
 
-    .delete-action {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        width: 72px;
-        background-color: #ff4444;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        z-index: 0;
-        
-        svg {
-            width: 32px;
-            height: 32px;
-            stroke: white;
-            stroke-width: 1.2px;
+        .delete-action {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 72px;
+            background-color: #ff4444;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 10px 10px 0;
+            
+            svg {
+                width: 32px;
+                height: 32px;
+                stroke: white;
+                stroke-width: 1.2px;
+            }
         }
     }
 }
