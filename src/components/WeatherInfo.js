@@ -2,6 +2,15 @@ import React from 'react';
 import SvgIcon from '../pages/SvgIcon';
 
 const WeatherInfo = ({ weather }) => {
+    const unit = localStorage.getItem('windUnit') || 'km/h';
+    
+    const convertSpeed = (speed) => {
+        if (unit === 'mph') {
+            return Math.round(speed * 0.621371);
+        }
+        return Math.round(speed);
+    };
+    
     if (!weather) return null;
 
     return (
@@ -20,7 +29,7 @@ const WeatherInfo = ({ weather }) => {
 
                 <div className='info-box'>
                 <SvgIcon name="wind-speed" className={"icon"} /> 
-                <div className='name-box'>{weather.windspeed}<span>km/h</span></div>
+                <div className='name-box'>{convertSpeed(weather.windspeed)}<span>{unit}</span></div>
                 </div>
 
                 <div className='info-box'>

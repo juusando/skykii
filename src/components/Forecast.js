@@ -19,7 +19,7 @@ const Forecast = ({ weatherData }) => {
             {/* {getWeatherCondition(weatherData.daily.weathercode[index])} */}
           </div>
           <div className="temp">
-            {Math.round(maxTemp)}°
+            {localStorage.getItem('tempUnit') === '°F' ? Math.round(maxTemp * 9/5 + 32) : Math.round(maxTemp)}°
           </div>
         </div>
       ))}
